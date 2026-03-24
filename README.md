@@ -202,7 +202,6 @@ After running, you'll find in your output directory:
 **Compilation fails**: The system automatically retries slides with fixes (up to 8 times). If a slide consistently fails:
 - Check the logs for specific error messages
 - The system will attempt plan revision automatically
-- Review `BeamerAgent.record.json` for detailed task execution history
 
 **Vision validation fails**: Slide has overflow, clipping, or readability issues
 - The system retries with refined LaTeX
