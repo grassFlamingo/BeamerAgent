@@ -163,7 +163,7 @@ When slides consistently fail validation:
 - Node.js >= 18.0.0; (recommend manage via [nvm](https://github.com/nvm-sh/nvm.git))
 - LaTeX distribution with Beamer (TeX Live, MiKTeX)
 - Poppler utilities (optional, for PDF preview): `sudo apt install poppler-utils`
-- API key (OpenAI or Anthropic)
+- API key (OpenAI)
 
 ## Configuration
 
