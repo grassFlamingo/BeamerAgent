@@ -166,16 +166,6 @@ After running, you'll find in your output directory:
 - `BeamerAgent.record.json` - Execution log with task history
 - `cache/` - Task execution cache (optional, for faster re-runs)
 
-## Interactive CLI
-
-Monitor progress with the recorder CLI:
-
-```bash
-node src/cli/recorder-cli.js output/my-presentation
-```
-
-Shortcuts: `↑/↓` navigate, `Enter` view details, `s` stats, `q` quit
-
 ## Troubleshooting
 
 **LaTeX not found**: Install TeX Live or MiKTeX with Beamer package
