@@ -4,6 +4,9 @@ An AI-powered agent that automatically converts LaTeX academic papers into Beame
 
 > This project leverages Large Language Models (LLMs) for intelligent code generation and development assistance.
 
+> We test with LLM backend `Qwen/Qwen3-VL-8B-Instruct`.
+
+
 ## Quick Usage
 
 ```bash
@@ -14,7 +17,7 @@ npm install
 cp .env.example .env
 
 # Generate presentation
-node src/index.js path/to/paper.tex output/my-presentation
+node main.js -i examples/sample-paper.tex
 ```
 
 That's it! The agent will:
@@ -24,6 +27,30 @@ That's it! The agent will:
 4. Validate each slide (visual + text alignment)
 5. Iteratively refine until quality threshold met
 6. Merge all slides into final presentation
+
+
+Hints(llm backend, Vision capability is required.):
+1. use cloud service.
+2. use local backend if you have powerful GPUs. For example, 
+
+```bash
+#! /bin/bash
+
+# enable this if you want to use modelscope source
+# export VLLM_USE_MODELSCOPE=True 
+# set path to cuda
+# export CUDA_HOME="/usr/local/cuda-12.9"
+export LD_LIBRARY_PATH="$CUDA_HOME/targets/x86_64-linux/lib":$LD_LIBRARY_PATH
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+vllm serve "Qwen/Qwen3-VL-8B-Instruct" \
+        --disable-uvicorn-access-log \
+        --tensor-parallel-size 2 \
+        --dtype "bfloat16" \
+        --max_model_len 64000 \
+        --enable-auto-tool-choice \
+        --tool-call-parser hermes
+```
 
 ## Features
 
@@ -133,7 +160,7 @@ When slides consistently fail validation:
 
 ## Requirements
 
-- Node.js >= 18.0.0
+- Node.js >= 18.0.0; (recommend manage via [nvm](https://github.com/nvm-sh/nvm.git))
 - LaTeX distribution with Beamer (TeX Live, MiKTeX)
 - Poppler utilities (optional, for PDF preview): `sudo apt install poppler-utils`
 - API key (OpenAI or Anthropic)
